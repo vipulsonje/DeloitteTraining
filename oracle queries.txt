@@ -1,0 +1,68 @@
+select sal,city from customer;
+
+select * from customer where city = 'Delhi';
+
+select sal,city from city not in ('Delhi','Punjab');
+
+select * from customer where sal between 2000 and 3000;
+
+select * from customer where (city = 'Delhi' or city = 'UP');
+
+select * from customer where (city = 'Delhi' and salary = 60000);
+
+select * from customer where cname like 'd%';
+
+select * from customer where trim(cname) like 'a%';
+
+select * from customer where cname not like 'a%';
+
+select * from customer where trim(cname) like '_a';
+
+select * from customer where cname like '_kk';
+
+select * from customer where trim(cname) like '___%';
+
+select * from customer where trim(cname) like 'abc\%__';
+
+select sum(sal) from customer group by city;
+
+update customer set cname = 'Keshav' where cno = 106;
+
+delete from customer;
+
+delete from customer where cno = 106;
+
+create table dept(cno int, dro int, ename char(10),dept char(20));
+
+insert into dept values(1821,27,"abc","pqr");
+
+insert into dept values(1875,36,"qwerty","lmn");
+
+select job_id,sum(salary) from employee where job_id NOT LIKE %REP% GROUP BY job_id HAVING sum(salary) > 13000 ORDER BY job_id HAVING SUM(salary)>1000;
+
+select department_id, MAX(salary) from employee department_id HAVING MAX(salary)>1000;
+
+select MAX(AVG(salary)) FROM employee GROUP BY department_id;
+
+select job_id,sum(salary),PAYROLL from employee where job_id NOT LIKE %REP% GROUP BY job_id HAVING sum(salary) > 13000 ORDER BY job_id HAVING SUM(salary)>1000 ORDER BY SUM(salary);
+
+select job_id,sum(salary),PAYROLL from employee where department_id>0 GROUP BY department_id,job_id ORDER BY department_id;
+
+select COUNT(DISTINCT department_id) from employee;
+
+select MIN(hire_date),MAX(hire_date) from employee;
+
+select AVG(salary), MAX(salary), MIN(salary), SUM(salary) from employee where job_id LIKE 'ao%';
+
+select last_name,salary from employees where salary > (select salary from employees where last_name = 'Abel');
+
+select last_name,job_id,salary from employees where job_id = (select job_id from employees where last_name = 'Seo') and salary > (select salary from employees where last_name = 'Seo');
+
+select last_name,job_id,salary from employees GROUP BY department_id HAVING MIN(salary) > (select MIN(salary)from employees where department_id = 50);
+
+select last_name, job_id ,salary FROM employees where salary = (select MIN(salary) FROM employees);
+
+select employee_id,last_name,job_id,salary from employees where salary < ANY(select salary FROM employees where job_id = 'IT_PROG') and job_id <> 'IT_PROG';
+
+select employee_id,last_name,job_id,salary from employees where salary < ALL(select salary FROM employees where job_id = 'IT_PROG') and job_id <> 'IT_PROG';
+
