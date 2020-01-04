@@ -1,0 +1,10 @@
+
+1) select e.employee_id,e.first_name,e.last_name,l.city from employees e,locations l where (l.city='Bombay' and e.salary >20000);
+
+2) select d.department_id,d.department_name from departments d,employees e where e.first_name = 'William';
+
+3) select first_name, hire_date from employees where job_id = (select job_id from jobs where job_title = 'Programmer')or job_id = (select job_id from jobs where job_title = 'Marketing Manager');
+
+4) select department_id from employees where commission_pct IS NOT NULL group by department_id having count(commission_pct)>5;
+
+5) select employee_id,first_name,last_name from employees where to_char(hire_date,'mon')='jan'; 
